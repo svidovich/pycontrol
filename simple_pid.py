@@ -6,12 +6,12 @@ class Controller:
         self.Ki = Ki  # Integral gain
         self.Kd = Kd  # Derivative gain
         self.setpoint = setpoint
-        self.last_time: int = int(time.time())
+        self.last_time: float = time.time()
         self.last_error = 0
         self.error_sum = 0
 
     def update(self, input: float) -> float:
-        time_now: int = int(time.time())
+        time_now: float = time.time()
         error: float = self.setpoint - input
         dt: int = time_now - self.last_time
         # For the integral bit
