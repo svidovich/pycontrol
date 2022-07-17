@@ -10,17 +10,13 @@ class Controller:
         self.last_error = 0
         self.error_sum = 0
 
-        # unsigned long lastTime;
-        # double Input, Output, Setpoint;
-        # double errSum, lastErr;
-
     def update(self, input: float) -> float:
         time_now: int = int(time.time())
         error: float = self.setpoint - input
-        dt = time_now - self.last_time
+        dt: int = time_now - self.last_time
         # For the integral bit
         self.error_sum += (error * dt)
-        error_derivative = (error - self.last_error) / dt
+        error_derivative: float = (error - self.last_error) / dt
         # While we're here...
         self.last_time = time_now
         self.last_error = error
