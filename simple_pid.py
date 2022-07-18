@@ -13,10 +13,12 @@ class Controller:
     def update(self, input: float) -> float:
         time_now: float = time.time()
         error: float = self.setpoint - input
+        print(f'setpoint is {self.setpoint} and input is {input}, so error is {error}')
         dt: int = time_now - self.last_time
         # For the integral bit
         self.error_sum += (error * dt)
         error_derivative: float = (error - self.last_error) / dt
+        print(f'de/dt: {error_derivative}')
         # While we're here...
         self.last_time = time_now
         self.last_error = error
